@@ -1,7 +1,7 @@
 package entities
 
 class Library() {
-    val bookList: ArrayList<Book> = ArrayList()
+    var bookList = mutableListOf<Book>()
 
     fun addBook(book : Book) {
         bookList.add(book)

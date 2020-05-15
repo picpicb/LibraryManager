@@ -10,8 +10,6 @@ import java.io.File
 class Export : ExportLibrary {
     override fun exportLibrary(library: Library) {
         val gson = Gson()
-        val gsonPretty = GsonBuilder().setPrettyPrinting().create()
         File("MyLibrary.json").writeText(gson.toJson(library.bookList))
     }
-
 }

@@ -4,8 +4,14 @@ import entities.Book
 import entities.Library
 import java.util.*
 
-class Management {
+
+interface ExportLibrary{
+    fun exportLibrary(library: Library)
+}
+
+class Management(private val exportUtil : ExportLibrary) {
     val library = Library()
+
     fun addBookToLibrary(){
             println("-- Auteur : ")
             val author = readLine()!!
@@ -19,17 +25,22 @@ class Management {
 
     fun showLibrary(){
         println("-- La bibliothèque contient à présent les livres suivants : ")
-        library.bookList.forEach() { book -> println("--  " + book.title) }
+        library.bookList.forEach() { book -> println("--  " + book.title + "; ID: "+book.id) }
     }
 
     fun deleteBook(){
         println("-- Tapez l'id du livre à supprimer");
         val idbook = readLine()!!
-        library.bookList.removeAll {it.id == UUID.fromString(idbook) }
+        library.bookList.removeAll {it.id.toString() == idbook }
         println("-- Le livre est supprimé");
     }
 
     fun countBooks(){
         println("-- La bibliothèque contient "+ library.bookList.count() + " livres")
     }
+
+    fun export(){
+        exportUtil.exportLibrary(library)
+    }
+
 }

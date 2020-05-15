@@ -1,5 +1,7 @@
 package entities
 
-class Book constructor(val id: Int, val author: String, val title: String, val genre: String){
+import java.util.*
+
+class Book(val id: UUID, val author: String, val title: String, val genre: String){
 
 }
